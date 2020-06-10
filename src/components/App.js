@@ -13,9 +13,10 @@ class App extends React.Component {
   onTermSubmit = async (term) => {
     const response = await youtube.get('/search', {
       params: {
+        q: term,
         part: 'snippet',
         type: 'video',
-        maxResult: 5,
+        maxResults: 5,
         key: KEY,
       },
     });
@@ -33,7 +34,7 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <SearchBar onTermSubmit={this.onTermSubmit} />
-        <div className="ui grid">
+        <div className="ui stackable grid">
           <div className="ui row">
             <div className="eleven wide column">
               <VideoDetail video={this.state.selectedVideo} />
